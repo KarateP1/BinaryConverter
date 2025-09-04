@@ -133,15 +133,16 @@ public class Converter {
     Converter(){
     }
 
-    public String convert(String phrase){
+    public String[] convert(String phrase){
         String[] phrases = phrase.split("");
+        String[] allOutputs = String[phrases.length];
         for(int i = 0; i<phrases.length; ++i){
-
+            allOutputs[i] = turnToBinary(phrases[i]);
         }
-        return "";
+        return allOutputs;
     }
 
-    public int turnToBinary(String x){
+    public String turnToBinary(String x){
         int asciiSpot = 0;
         for(int i = 0; i<asciiTable.length; ++i){
             if(x.equals(asciiTable[i])){
@@ -155,7 +156,7 @@ public class Converter {
             binarySpot = Math.pow(2, cnt);
             ++cnt;
         }
-        cnt -= 1;
+        --cnt;
         String output = "1"; 
         asciiSpot -= Math.pow(2, cnt);
         binarySpot = Math.pow(2, cnt);
@@ -173,8 +174,11 @@ public class Converter {
             }
             
         }
+        
+        return output;
 
     }
 
 }
+
 
