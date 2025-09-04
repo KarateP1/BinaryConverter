@@ -155,7 +155,26 @@ public class Converter {
             binarySpot = Math.pow(2, cnt);
             ++cnt;
         }
+        cnt -= 1;
+        String output = "1"; 
+        asciiSpot -= Math.pow(2, cnt);
+        binarySpot = Math.pow(2, cnt);
+        while(cnt > 0){
+            if(asciiSpot - binarySpot > 0){
+                output += "1";
+                asciiSpot -= Math.pow(2, cnt);
+                --cnt;
+                binarySpot = Math.pow(2, cnt);
+            }
+            else{
+                output += "0";
+                --cnt;
+                binarySpot = Math.pow(2, cnt);
+            }
+            
+        }
 
     }
 
 }
+
