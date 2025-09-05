@@ -11,11 +11,19 @@ public class Main {
             System.out.println("Please enter the statment that you wish to convert.");
             Converter x = new Converter();
             String sentence = in.nextLine();
-            x.convert(sentence);
-
+            String[] newOutput = x.convert(sentence);
+            for(int i = 0; i<newOutput.length; ++i){
+                System.out.print(newOutput[i]+" ");
+            }
         }
         else if(ans.equals("revert")){
             System.out.println("Please enter the statment that you wish to revert.");
+            String revertString = in.nextLine();
+            Reverter y = new Reverter();
+            String[] newOutput = y.Revert(revertString);
+            for(int i = 0; i<newOutput.length; ++i){
+                System.out.print(newOutput[i]);
+            }
         }
         else{
             System.out.println("Please use a valid answer");
