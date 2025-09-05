@@ -135,10 +135,22 @@ public class Converter {
 
     public String[] convert(String phrase){
         String[] phrases = phrase.split("");
-        String[] allOutputs = String[phrases.length];
+        String[] allOutputs = new String[phrases.length];
         for(int i = 0; i<phrases.length; ++i){
             allOutputs[i] = turnToBinary(phrases[i]);
         }
+
+        /* 
+        String[] allOutputsFlipped = new String[allOutputs.length];
+        for(int i = 0; i < allOutputs.length; ++i){
+            String oppString = "";
+            for(int j = allOutputs[i].length(); j >= 0; --j){
+                oppString += allOutputs[i].substring(j, j+1);
+            }
+            allOutputsFlipped[i] = oppString;
+        }
+            */
+       
         return allOutputs;
     }
 
@@ -151,17 +163,21 @@ public class Converter {
             }
         }
         double binarySpot = 0;
-        double cnt = 0;
+        double cnt = -1;
         while(asciiSpot - binarySpot > 0){
-            binarySpot = Math.pow(2, cnt);
             ++cnt;
+            binarySpot = Math.pow(2, cnt);
         }
         --cnt;
         String output = "1"; 
         asciiSpot -= Math.pow(2, cnt);
+        --cnt;
         binarySpot = Math.pow(2, cnt);
-        while(cnt > 0){
-            if(asciiSpot - binarySpot > 0){
+
+        //////////////////////////////////////////////////////
+
+        while(cnt > -1){
+            if(asciiSpot - binarySpot >= 0){
                 output += "1";
                 asciiSpot -= Math.pow(2, cnt);
                 --cnt;
@@ -180,5 +196,4 @@ public class Converter {
     }
 
 }
-
 
